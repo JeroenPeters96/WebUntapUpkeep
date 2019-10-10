@@ -5,24 +5,24 @@ import {AppComponent} from './app.component';
 import {NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import {AuthenticationComponent} from './components/authentication/authentication.component';
 import {PageNoFoundComponent} from './components/page-no-found/page-no-found.component';
-import {RouterModule, Routes} from '@angular/router';
-
-let appRoutes: Routes;
-appRoutes = [
-  {path: 'auth', component: AuthenticationComponent},
-  {path: '**', component: PageNoFoundComponent}
-];
+import {AppRoutingModule} from './app-routing.module';
+import { HomeComponent } from './components/home/home.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthenticationComponent,
-    PageNoFoundComponent
+    PageNoFoundComponent,
+    HomeComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
     NgbAlertModule,
-    RouterModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
