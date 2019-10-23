@@ -1,26 +1,38 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <h1>UpkeepDraw</h1>
+    <span class="menu-spacer"></span>
+    <div>
+      <a mat-button [routerLink]="'/accounts'"> Deck Builder </a>
+      <a mat-button [routerLink]="'/create-account'"> Cards </a>
+      <a mat-button [routerLink]="'/contacts'"> Search Decks </a>
+      <a mat-button [routerLink]="'/create-contact'"> Meta Decks </a>
+    </div>
+    <span class="fill-space"></span>
+    <button mat-icon-button>
+      <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+    </button>
+  </mat-toolbar-row>
+  <!--  <mat-toolbar-row>-->
+  <!--&lt;!&ndash;    <span style="font-size: 12px;">SimpleCRM helps you easily manage your contacts</span>&ndash;&gt;-->
+  <!--  </mat-toolbar-row>-->
+
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav position="end" class="sidenav">
     <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
+
+      <a mat-list-item [routerLink]="'/accounts'"> Your decks </a>
+      <a mat-list-item [routerLink]="'/create-account'"> Collection </a>
+      <a mat-list-item [routerLink]="'/contacts'"> Trade </a>
+      <!--      <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a>-->
+
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span>WebUntapUpkeep</span>
-    </mat-toolbar>
-    <!-- Add Content Here -->
+    <div style="height: 88vh; margin-left: 2%;">
+      <router-outlet></router-outlet>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

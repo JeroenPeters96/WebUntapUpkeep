@@ -3,7 +3,7 @@
 }
 
 .sidenav {
-  width: 200px;
+  width: 15%;
 }
 
 .sidenav .mat-toolbar {
@@ -14,4 +14,12 @@
   position: sticky;
   top: 0;
   z-index: 1;
+}
+
+.fill-space {
+  flex: 1 1 auto;
+}
+
+.menu-spacer {
+  width: 15px;
 }
