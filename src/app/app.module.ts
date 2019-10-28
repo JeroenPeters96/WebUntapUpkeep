@@ -5,10 +5,10 @@ import {AppComponent} from './app.component';
 import {NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import {AuthenticationComponent} from './components/authentication/authentication.component';
 
-import {AppRoutingModule} from './app-routing.module';
+import {AppRouting} from './app.routing';
 import {HomeComponent} from './components/home/home.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {UnTapNavComponent} from './components/un-tap-nav/un-tap-nav.component';
+import {UntapLayoutComponent} from './components/untap-layout/untap-layout.component';
 import {LayoutModule} from '@angular/cdk/layout';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
@@ -17,6 +17,15 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
 import {DeckComponent} from './components/deck/deck.component';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
+import {CardService} from './services/card.service';
+import {DeckService} from './services/deck.service';
+import {AuthenticationService} from './services/authentication.service';
+import {UserService} from './services/user.service';
+import {AlertService} from './services/alert.service';
+import {AlertComponent} from './directives';
+import {AuthGuard} from './guards';
+import { LoginLayoutComponent } from './components/login-layout/login-layout.component';
+import { DeckBuilderComponent } from './components/deck-builder/deck-builder.component';
 
 @NgModule({
   declarations: [
@@ -24,13 +33,16 @@ import {PageNotFoundComponent} from './components/page-not-found/page-not-found.
     AuthenticationComponent,
     PageNotFoundComponent,
     HomeComponent,
-    UnTapNavComponent,
-    DeckComponent
+    UntapLayoutComponent,
+    AlertComponent,
+    DeckComponent,
+    LoginLayoutComponent,
+    DeckBuilderComponent
   ],
   imports: [
     BrowserModule,
     NgbAlertModule,
-    AppRoutingModule,
+    AppRouting,
     BrowserAnimationsModule,
     LayoutModule,
     MatToolbarModule,
@@ -39,7 +51,14 @@ import {PageNotFoundComponent} from './components/page-not-found/page-not-found.
     MatIconModule,
     MatListModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    CardService,
+    DeckService,
+    AuthenticationService,
+    UserService,
+    AlertService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

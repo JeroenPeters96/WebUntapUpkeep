@@ -7,15 +7,15 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { UnTapNavComponent } from './un-tap-nav.component';
+import { UntapLayoutComponent } from './untap-layout.component';
 
-describe('UnTapNavComponent', () => {
-  let component: UnTapNavComponent;
-  let fixture: ComponentFixture<UnTapNavComponent>;
+describe('UntapLayoutComponent', () => {
+  let component: UntapLayoutComponent;
+  let fixture: ComponentFixture<UntapLayoutComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [UnTapNavComponent],
+      declarations: [UntapLayoutComponent],
       imports: [
         NoopAnimationsModule,
         LayoutModule,
@@ -29,7 +29,7 @@ describe('UnTapNavComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UnTapNavComponent);
+    fixture = TestBed.createComponent(UntapLayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

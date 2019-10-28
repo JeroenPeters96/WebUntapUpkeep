@@ -5,10 +5,10 @@ import { map, shareReplay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-un-tap-nav',
-  templateUrl: './un-tap-nav.component.html',
-  styleUrls: ['./un-tap-nav.component.css']
+  templateUrl: './untap-layout.component.html',
+  styleUrls: ['./untap-layoutcomponent.css']
 })
-export class UnTapNavComponent {
+export class UntapLayoutComponent {
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(

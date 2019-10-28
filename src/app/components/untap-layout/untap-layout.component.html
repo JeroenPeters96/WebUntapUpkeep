@@ -3,7 +3,7 @@
     <h1>UpkeepDraw</h1>
     <span class="menu-spacer"></span>
     <div>
-      <a mat-button [routerLink]="'/accounts'"> Deck Builder </a>
+      <a mat-button [routerLink]="'/deckbuilder'"> Deck Builder </a>
       <a mat-button [routerLink]="'/create-account'"> Cards </a>
       <a mat-button [routerLink]="'/contacts'"> Search Decks </a>
       <a mat-button [routerLink]="'/create-contact'"> Meta Decks </a>
@@ -31,8 +31,8 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div style="height: 88vh; margin-left: 2%;">
-      <router-outlet></router-outlet>
+      <div style="height: 85vh; max-height: 85vh ; margin-left: 2%;">
+        <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
