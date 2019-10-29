@@ -7,6 +7,8 @@ import {AuthGuard} from './guards';
 import {UntapLayoutComponent} from './components/untap-layout/untap-layout.component';
 import {LoginLayoutComponent} from './components/login-layout/login-layout.component';
 import {DeckBuilderComponent} from './components/deck-builder/deck-builder.component';
+import {RememberPasswordComponent} from './components/remember-password/remember-password.component';
+import {CreateAccountComponent} from './components/create-account/create-account.component';
 
 const routes: Route[] = [
 
@@ -28,6 +30,20 @@ const routes: Route[] = [
       }
     ]
   },
+  {path: 'forgot', component: LoginLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: RememberPasswordComponent
+      }
+    ]},
+  {path: 'registration', component: LoginLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: CreateAccountComponent
+      }
+    ]},
   {path: '**', component: UntapLayoutComponent,
     canActivate: [AuthGuard],
     children:  [

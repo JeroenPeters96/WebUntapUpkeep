@@ -9,7 +9,6 @@ import {AppRouting} from './app.routing';
 import {HomeComponent} from './components/home/home.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {UntapLayoutComponent} from './components/untap-layout/untap-layout.component';
-import {LayoutModule} from '@angular/cdk/layout';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -26,6 +25,17 @@ import {AlertComponent} from './directives';
 import {AuthGuard} from './guards';
 import { LoginLayoutComponent } from './components/login-layout/login-layout.component';
 import { DeckBuilderComponent } from './components/deck-builder/deck-builder.component';
+import { CreateAccountComponent } from './components/create-account/create-account.component';
+import { RememberPasswordComponent } from './components/remember-password/remember-password.component';
+import {
+  _MatMenuDirectivesModule,
+  MatCardModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatMenuModule,
+  MatProgressSpinnerModule
+} from '@angular/material';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -37,19 +47,27 @@ import { DeckBuilderComponent } from './components/deck-builder/deck-builder.com
     AlertComponent,
     DeckComponent,
     LoginLayoutComponent,
-    DeckBuilderComponent
+    DeckBuilderComponent,
+    CreateAccountComponent,
+    RememberPasswordComponent
   ],
   imports: [
     BrowserModule,
     NgbAlertModule,
     AppRouting,
     BrowserAnimationsModule,
-    LayoutModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatProgressSpinnerModule,
+    FormsModule,
+    _MatMenuDirectivesModule,
+    MatMenuModule,
+    MatInputModule
   ],
   providers: [
     AuthGuard,
