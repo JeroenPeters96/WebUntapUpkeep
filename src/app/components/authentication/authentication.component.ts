@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {AuthenticationService} from '../../services/authentication.service';
 
 @Component({
   selector: 'app-authentication',
@@ -7,6 +8,8 @@ import {Router} from '@angular/router';
   styleUrls: ['./authentication.component.css']
 })
 export class AuthenticationComponent implements OnInit {
+
+  authService: AuthenticationService;
 
   constructor(private router: Router) { }
 
@@ -16,8 +19,11 @@ export class AuthenticationComponent implements OnInit {
   ngOnInit() {
   }
 
-  login() : void {
-
+  login(email:string, password: string) : void {
+    this.authService.login(email,password)
+    if(localStorage.getItem('currentAccount')){
+      this.router.navigate(['/home']);
+    }
   }
 
 }
