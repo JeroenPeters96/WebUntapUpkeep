@@ -23,19 +23,21 @@ import {UserService} from './services/user.service';
 import {AlertService} from './services/alert.service';
 import {AlertComponent} from './directives';
 import {AuthGuard} from './guards';
-import { LoginLayoutComponent } from './components/login-layout/login-layout.component';
-import { DeckBuilderComponent } from './components/deck-builder/deck-builder.component';
-import { CreateAccountComponent } from './components/create-account/create-account.component';
-import { RememberPasswordComponent } from './components/remember-password/remember-password.component';
+import {LoginLayoutComponent} from './components/login-layout/login-layout.component';
+import {DeckBuilderComponent} from './components/deck-builder/deck-builder.component';
+import {CreateAccountComponent} from './components/create-account/create-account.component';
+import {RememberPasswordComponent} from './components/remember-password/remember-password.component';
 import {
   _MatMenuDirectivesModule,
   MatCardModule,
+  MatDialogModule,
   MatFormFieldModule,
   MatInputModule,
   MatMenuModule,
   MatProgressSpinnerModule
 } from '@angular/material';
 import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,7 @@ import {FormsModule} from '@angular/forms';
     RememberPasswordComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     NgbAlertModule,
     AppRouting,
@@ -67,7 +70,8 @@ import {FormsModule} from '@angular/forms';
     FormsModule,
     _MatMenuDirectivesModule,
     MatMenuModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule
   ],
   providers: [
     AuthGuard,

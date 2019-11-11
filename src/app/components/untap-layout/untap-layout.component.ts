@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-un-tap-nav',
@@ -7,7 +7,8 @@ import { Component } from '@angular/core';
 })
 export class UntapLayoutComponent {
 
-
-  constructor() {}
+  
+  constructor() {
+  }
 
 }

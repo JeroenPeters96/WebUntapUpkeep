@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../../services/authentication.service';
 
@@ -11,19 +11,22 @@ export class AuthenticationComponent implements OnInit {
 
   authService: AuthenticationService;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, authService: AuthenticationService) {
+    this.authService = authService;
+  }
 
   email: string;
   password: string;
+  showSpinner = null;
 
   ngOnInit() {
   }
 
-  login(email:string, password: string) : void {
-    this.authService.login(email,password)
-    if(localStorage.getItem('currentAccount')){
-      this.router.navigate(['/home']);
+  login(email: string, password: string): void {
+    this.showSpinner = 'spin!';
+    this.authService.login(email, password);
+    if (localStorage.getItem('currentAccount')) {
+      this.router.navigate(['/auth']);
     }
   }
-
 }
