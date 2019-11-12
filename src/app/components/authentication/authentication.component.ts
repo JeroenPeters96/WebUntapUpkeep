@@ -26,7 +26,7 @@ export class AuthenticationComponent implements OnInit {
     this.showSpinner = 'spin!';
     this.authService.login(email, password);
     if (localStorage.getItem('currentAccount')) {
-      this.router.navigate(['/auth']);
+      this.router.navigate(['/home']);
     }
   }
 }

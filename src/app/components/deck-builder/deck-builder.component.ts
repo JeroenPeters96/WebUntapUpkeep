@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {DeckService} from '../../services/deck.service';
 
 @Component({
   selector: 'app-deck-builder',
@@ -6,10 +8,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./deck-builder.component.css']
 })
 export class DeckBuilderComponent implements OnInit {
+  deckname: string;
+  deckdescription: string;
+  deckservice: DeckService;
+  deck: string;
 
-  constructor() { }
+  constructor(private router: Router, deckservice: DeckService) {
+    this.deckservice = deckservice;
+  }
 
   ngOnInit() {
   }
 
+  create(deckname: string, deckdescription: string) {
+    this.deck = this.deckservice.createnewdeck(deckname, deckdescription);
+    if (this.deck !== '') {
+      this.router.navigate(['/deck'], {queryParams: {deckId: this.deck}});
+    }
+
+
+  }
 }
