@@ -21,7 +21,7 @@ export class DeckBuilderComponent implements OnInit {
   }
 
   create(deckname: string, deckdescription: string) {
-    this.deck = this.deckservice.createnewdeck(deckname, deckdescription);
+    this.deck = this.deckservice.createNewDeck(deckname, deckdescription);
     if (this.deck !== '') {
       this.router.navigate(['/deck'], {queryParams: {deckId: this.deck}});
     }

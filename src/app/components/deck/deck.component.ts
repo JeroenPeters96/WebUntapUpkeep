@@ -39,7 +39,7 @@ export class DeckComponent implements OnInit, OnDestroy {
     if (this.deckId === 'null') {
       this.router.navigate(['/home']);
     } else {
-      this.deck = this.deckService.getdeck(this.deckId);
+      this.deck = this.deckService.getDeck(this.deckId);
       this.updateCards();
     }
   }

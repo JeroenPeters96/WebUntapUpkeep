@@ -9,12 +9,16 @@ export class DeckService {
   constructor(private http: HttpClient) {
   }
 
-  createnewdeck(deckname: string, deckdescription: string): string {
+  getDecksByUserId(userId: string) : Deck[] {
+    return null;
+  }
+
+  createNewDeck(deckname: string, deckdescription: string): string {
 
     return 'false';
   }
 
-  getdeck(deckid: string): Deck {
+  getDeck(deckid: string): Deck {
 
     return new Deck();
   }
@@ -23,15 +27,15 @@ export class DeckService {
 
   }
 
-  removecards(deckId: string, cards: Card[]) {
+  removeCards(deckId: string, cards: Card[]) {
 
   }
 
-  addcards(deckId: string, cards: Card[]) {
+  addCards(deckId: string, cards: Card[]) {
 
   }
 
-  copydeck(deck: Deck) {
+  copyDeck(deck: Deck) {
 
   }
 

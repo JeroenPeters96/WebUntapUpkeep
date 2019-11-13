@@ -7,9 +7,9 @@
     <span class="menu-spacer"></span>
     <div>
       <a mat-button [routerLink]="'/deckbuilder'"> Deck Builder </a>
-      <a mat-button [routerLink]="'/create-account'"> Cards </a>
-      <a mat-button [routerLink]="'/contacts'"> Search Decks </a>
-      <a mat-button [routerLink]="'/create-contact'"> Meta Decks </a>
+      <a mat-button [routerLink]="'/searchcard'"> Cards </a>
+      <a mat-button [routerLink]="'/searchdeck'"> Search Decks </a>
+      <a mat-button [routerLink]="'/meta'"> Meta Decks </a>
     </div>
     <span class="fill-space"></span>
     <!--    <button mat-icon-button>-->
@@ -30,6 +30,7 @@
       <a mat-list-item [routerLink]="'/accounts'"> Your decks </a>
       <a mat-list-item [routerLink]="'/create-account'"> Collection </a>
       <a mat-list-item [routerLink]="'/contacts'"> Trade </a>
+      <a mat-list-item [routerLink]="'/logout'"> Logout </a>
       <!--      <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a>-->
 
     </mat-nav-list>

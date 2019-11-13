@@ -10,6 +10,10 @@ import {DeckBuilderComponent} from './components/deck-builder/deck-builder.compo
 import {RememberPasswordComponent} from './components/remember-password/remember-password.component';
 import {CreateAccountComponent} from './components/create-account/create-account.component';
 import {DeckComponent} from './components/deck/deck.component';
+import {SearchdecksComponent} from './components/searchdecks/searchdecks.component';
+import {CardsComponent} from './components/cards/cards.component';
+import {SearchcardComponent} from './components/searchcard/searchcard.component';
+import {MetdecksComponent} from './components/metdecks/metdecks.component';
 
 const routes: Route[] = [
 
@@ -62,10 +66,50 @@ const routes: Route[] = [
     ]
   },
   {
+    path: 'searchdeck', component: UntapLayoutComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        component: SearchdecksComponent
+      }
+    ]
+
+  },
+  {
+    path: 'meta', component: UntapLayoutComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        component: MetdecksComponent
+      }
+    ]
+  },
+  {
+    path: 'card', component: UntapLayoutComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        component: CardsComponent
+      }
+    ]
+  },
+  {
+    path: 'searchcard', component: UntapLayoutComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        component: SearchcardComponent
+      }
+    ]
+  },
+  {
     path: '**', component: UntapLayoutComponent,
     canActivate: [AuthGuard],
     children: [
-
       {
         path: '',
         component: HomeComponent
