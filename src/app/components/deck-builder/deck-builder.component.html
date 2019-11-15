@@ -24,10 +24,22 @@
             </mat-form-field>
           </td>
         </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <mat-label>Format</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let format of formats" [value]="format" required="">
+                  {{format}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+        </tr>
       </table>
     </form>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button (click)="create(deckname,deckdescription)" color="primary">Create deck</button>
+    <button mat-raised-button (click)="create(deckname,deckdescription,format)" color="primary">Create deck</button>
   </mat-card-actions>
 </mat-card>

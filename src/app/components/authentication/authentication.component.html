@@ -31,4 +31,5 @@
     <button mat-raised-button (click)="login(email,password)" color="primary">Login</button>
   </mat-card-actions>
   <p><a [routerLink]="'/registration'">Create an account</a></p>
+  <p *ngIf="hide">Not a valid email password combination</p>
 </mat-card>

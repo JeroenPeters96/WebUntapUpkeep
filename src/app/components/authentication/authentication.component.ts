@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../../services/authentication.service';
+import {User} from '../../models';
 
 @Component({
   selector: 'app-authentication',
@@ -10,9 +11,14 @@ import {AuthenticationService} from '../../services/authentication.service';
 export class AuthenticationComponent implements OnInit {
 
   authService: AuthenticationService;
+  hide = false;
+  private user: User;
 
   constructor(private router: Router, authService: AuthenticationService) {
     this.authService = authService;
+    if (localStorage.getItem('currentAccount')) {
+      this.router.navigate(['/home']);
+    }
   }
 
   email: string;
@@ -24,9 +30,26 @@ export class AuthenticationComponent implements OnInit {
 
   login(email: string, password: string): void {
     this.showSpinner = 'spin!';
-    this.authService.login(email, password);
-    if (localStorage.getItem('currentAccount')) {
+    this.hide = false;
+    this.authService.login(email, password).subscribe((data: any) => {
+      if (data == null) {
+        this.hide = true;
+        this.showSpinner = null;
+      }
+      this.user = data;
+      this.continue();
+    });
+  }
+
+  private continue() {
+    if (this.user !== null) {
+      localStorage.setItem('currentAccount', JSON.stringify(this.user));
       this.router.navigate(['/home']);
+    } else {
+      this.hide = true;
+      this.showSpinner = null;
     }
   }
+
+
 }

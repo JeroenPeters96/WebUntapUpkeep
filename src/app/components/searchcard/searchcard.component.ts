@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {debounceTime, finalize, switchMap, tap} from 'rxjs/operators';
+import {Component, OnInit} from '@angular/core';
+import {debounceTime, switchMap, tap} from 'rxjs/operators';
 import {CardService} from '../../services/card.service';
 import {Router} from '@angular/router';
-import {Card} from '../../models';
 import {FormControl} from '@angular/forms';
-import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-searchcard',
@@ -17,11 +15,12 @@ export class SearchcardComponent implements OnInit {
   searchCardCtrl = new FormControl();
   isLoading = false;
   filteredCards: any;
-  hide =false;
+  hide = false;
 
   constructor(private router: Router, cardService: CardService) {
     this.cardService = cardService;
   }
+
   ngOnInit() {
     this.searchCardCtrl.valueChanges
       .pipe(
@@ -32,12 +31,12 @@ export class SearchcardComponent implements OnInit {
           this.hide = false;
         }),
         switchMap(value => this.cardService.getAutocomplete(value)
-          )
         )
+      )
       .subscribe(data => {
-          this.filteredCards = data;
-          console.log(this.filteredCards);
-          this.hide = true;
+        this.filteredCards = data;
+        console.log(this.filteredCards);
+        this.hide = true;
       });
   }
 

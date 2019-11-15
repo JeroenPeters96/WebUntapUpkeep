@@ -3,4 +3,6 @@ export class Deck {
   username: string;
   name: string;
   cards: string[];
+  deckArt: string;
+  format: string;
 }

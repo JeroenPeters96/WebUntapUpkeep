@@ -9,11 +9,12 @@ export class DeckService {
   constructor(private http: HttpClient) {
   }
 
-  getDecksByUserId(userId: string) : Deck[] {
+  getDecksByUserId(userId: string): Deck[] {
     return null;
   }
 
-  createNewDeck(deckname: string, deckdescription: string): string {
+  createNewDeck(deckname: string, deckdescription: string, format: string): string {
+    
 
     return 'false';
   }

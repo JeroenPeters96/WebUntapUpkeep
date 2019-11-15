@@ -28,20 +28,22 @@ import {DeckBuilderComponent} from './components/deck-builder/deck-builder.compo
 import {CreateAccountComponent} from './components/create-account/create-account.component';
 import {RememberPasswordComponent} from './components/remember-password/remember-password.component';
 import {
-  _MatMenuDirectivesModule, MatAutocompleteModule,
+  _MatMenuDirectivesModule,
+  MatAutocompleteModule,
   MatCardModule,
   MatDialogModule,
   MatFormFieldModule,
   MatInputModule,
   MatMenuModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatSelectModule
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import { MetdecksComponent } from './components/metdecks/metdecks.component';
-import { SearchdecksComponent } from './components/searchdecks/searchdecks.component';
-import { CardsComponent } from './components/cards/cards.component';
-import { SearchcardComponent } from './components/searchcard/searchcard.component';
+import {MetdecksComponent} from './components/metdecks/metdecks.component';
+import {SearchdecksComponent} from './components/searchdecks/searchdecks.component';
+import {CardsComponent} from './components/cards/cards.component';
+import {SearchcardComponent} from './components/searchcard/searchcard.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +83,8 @@ import { SearchcardComponent } from './components/searchcard/searchcard.componen
     MatInputModule,
     MatDialogModule,
     MatAutocompleteModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSelectModule
   ],
   providers: [
     AuthGuard,

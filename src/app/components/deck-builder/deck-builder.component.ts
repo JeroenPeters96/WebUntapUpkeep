@@ -12,6 +12,25 @@ export class DeckBuilderComponent implements OnInit {
   deckdescription: string;
   deckservice: DeckService;
   deck: string;
+  format: string;
+  formats: string[] = [
+    'Standard',
+    'Pioneer',
+    'Historic',
+    'EDH',
+    'Modern',
+    'Legacy',
+    'Vintage'];
+  //
+  // {
+  //   Standard: 'Standard',
+  //   Pioneer: 'Pioneer',
+  //   Historic: 'Historic',
+  //   ElderDragonHighlander: 'EDH',
+  //   Modern: 'Modern',
+  //   Legacy: 'Legacy',
+  //   Vintage: 'Vintage'
+  // };
 
   constructor(private router: Router, deckservice: DeckService) {
     this.deckservice = deckservice;
@@ -20,8 +39,8 @@ export class DeckBuilderComponent implements OnInit {
   ngOnInit() {
   }
 
-  create(deckname: string, deckdescription: string) {
-    this.deck = this.deckservice.createNewDeck(deckname, deckdescription);
+  create(deckname: string, deckdescription: string, format: string) {
+    this.deck = this.deckservice.createNewDeck(deckname, deckdescription, format);
     if (this.deck !== '') {
       this.router.navigate(['/deck'], {queryParams: {deckId: this.deck}});
     }

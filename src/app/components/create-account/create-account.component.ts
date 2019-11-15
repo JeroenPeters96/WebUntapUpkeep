@@ -26,6 +26,7 @@ export class CreateAccountComponent implements OnInit {
   register(username: string, email: string, password: string) {
     this.showSpinner = 'spin!';
     this.authService.register(username, email, password);
+    this.showSpinner = null;
     this.router.navigate(['/auth']);
   }
 }
