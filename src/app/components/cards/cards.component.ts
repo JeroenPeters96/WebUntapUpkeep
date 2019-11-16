@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CardService} from '../../services/card.service';
 import {Card} from '../../models';
@@ -13,7 +13,7 @@ export class CardsComponent implements OnInit {
   private sub: Subscription;
   private cardId: string;
   private cardService: CardService;
-  private card: Card;
+  private card: Card = new Card();
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -26,12 +26,25 @@ export class CardsComponent implements OnInit {
       .queryParams
       .subscribe(params => {
         // Defaults to 0 if no query param provided.
+        console.log(params);
         this.cardId = params.cardName || 'null';
+        console.log(this.cardId);
       });
     if (this.cardId === 'null') {
       this.router.navigate(['/home']);
     } else {
-      this.card = this.cardService.getCardByName(this.cardId);
+      this.cardService.getCardByName(this.cardId)
+        .subscribe(
+          (data: any) => {
+            if (data == null) {
+              this.router.navigate(['/home']);
+            }
+            this.card = data;
+            console.log(this.card);
+          }
+        )
     }
   }
+
+
 }

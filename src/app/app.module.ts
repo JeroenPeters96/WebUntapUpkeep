@@ -32,7 +32,7 @@ import {
   MatAutocompleteModule,
   MatCardModule,
   MatDialogModule,
-  MatFormFieldModule,
+  MatFormFieldModule, MatGridListModule,
   MatInputModule,
   MatMenuModule,
   MatProgressSpinnerModule,
@@ -84,7 +84,8 @@ import {SearchcardComponent} from './components/searchcard/searchcard.component'
     MatDialogModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatGridListModule
   ],
   providers: [
     AuthGuard,

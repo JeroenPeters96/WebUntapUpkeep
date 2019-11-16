@@ -1,2 +1,17 @@
-<p>cards works!</p>
-{{card.cardname}}
+<div class="asdf">
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{card.cardname}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-grid-list cols="2" rowHeight="20%">
+      <mat-grid-tile colspan="1" rowspan="2">
+        <img mat-card-image src={{card.imageUrl}} style="max-width: 45%">
+      </mat-grid-tile>
+      <mat-grid-tile colspan="2" rowspan="2">
+asdfasdf
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card-content>
+</mat-card>
+</div>

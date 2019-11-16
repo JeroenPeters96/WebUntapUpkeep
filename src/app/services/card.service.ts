@@ -20,17 +20,7 @@ export class CardService {
     return null;
   }
 
-  getCardByName(cardName: string): Card {
-    if (cardName.toString().length === 0) {
-      return null;
-    }
-    this.http.get('http://localhost:8082/cardqry/name/' + cardName).subscribe(
-      (data) => {
-        console.log(data);
-        return data;
-      }
-    );
+  getCardByName(cardName: string) {
+    return  this.http.get('http://localhost:8082/cardqry/name/' + cardName);
   }
-
-
 }

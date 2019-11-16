@@ -43,7 +43,7 @@ export class AuthenticationComponent implements OnInit {
 
   private continue() {
     if (this.user !== null) {
-      localStorage.setItem('currentAccount', JSON.stringify(this.user));
+      sessionStorage.setItem('currentAccount', JSON.stringify(this.user));
       this.router.navigate(['/home']);
     } else {
       this.hide = true;
