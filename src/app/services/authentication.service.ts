@@ -1,7 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {Deck} from '../models';
 
 
 @Injectable(
@@ -14,8 +12,6 @@ export class AuthenticationService {
 
   private apiModelRegister: { email: string; username: string, password: string; };
   private postString: string;
-  private data: Observable<string>;
-  private d: Deck;
   private extractData: any;
   private response: any;
 
@@ -40,7 +36,7 @@ export class AuthenticationService {
 
 
   logout() {
-
+    sessionStorage.clear();
   }
 
 

@@ -1,4 +1,6 @@
 import {Component} from '@angular/core';
+import {AuthenticationService} from '../../services/authentication.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-un-tap-nav',
@@ -6,9 +8,15 @@ import {Component} from '@angular/core';
   styleUrls: ['./untap-layoutcomponent.css']
 })
 export class UntapLayoutComponent {
+  private authService: AuthenticationService;
 
-  
-  constructor() {
+
+  constructor(private router: Router, authService: AuthenticationService) {
+    this.authService = authService;
   }
 
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/auth']);
+  }
 }

@@ -8,11 +8,11 @@ import {DeckService} from '../../services/deck.service';
   styleUrls: ['./deck-builder.component.css']
 })
 export class DeckBuilderComponent implements OnInit {
-  deckname: string;
-  deckdescription: string;
-  deckservice: DeckService;
+  deckName: string;
+  deckDescription: string;
+  deckService: DeckService;
   deck: string;
-  format: string;
+  selectedFormat: string;
   formats: string[] = [
     'Standard',
     'Pioneer',
@@ -21,30 +21,37 @@ export class DeckBuilderComponent implements OnInit {
     'Modern',
     'Legacy',
     'Vintage'];
-  //
-  // {
-  //   Standard: 'Standard',
-  //   Pioneer: 'Pioneer',
-  //   Historic: 'Historic',
-  //   ElderDragonHighlander: 'EDH',
-  //   Modern: 'Modern',
-  //   Legacy: 'Legacy',
-  //   Vintage: 'Vintage'
-  // };
+  private json: string;
 
-  constructor(private router: Router, deckservice: DeckService) {
-    this.deckservice = deckservice;
+  constructor(private router: Router, deckService: DeckService) {
+    this.deckService = deckService;
   }
+
+  private response: { deckId: string; };
 
   ngOnInit() {
   }
 
-  create(deckname: string, deckdescription: string, format: string) {
-    this.deck = this.deckservice.createNewDeck(deckname, deckdescription, format);
-    if (this.deck !== '') {
-      this.router.navigate(['/deck'], {queryParams: {deckId: this.deck}});
-    }
-
-
+  create(deckName: string, deckDescription: string, format: string) {
+    this.deckService.createNewDeck(deckName, deckDescription, format)
+      .subscribe(
+        (data) => {
+          this.json = JSON.stringify(data);
+          this.response = JSON.parse(this.json);
+          this.continue(this.response.deckId);
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
+
+  continue(deckIds: string) {
+    this.router.navigate(['/deck'], {queryParams: {deckId: deckIds}});
+  }
+
+  setFormat(format: string) {
+    this.selectedFormat = format;
+  }
+
 }

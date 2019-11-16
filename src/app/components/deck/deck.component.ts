@@ -33,14 +33,21 @@ export class DeckComponent implements OnInit, OnDestroy {
     this.sub = this.route
       .queryParams
       .subscribe(params => {
-        // Defaults to 0 if no query param provided.
         this.deckId = params.deckId || 'null';
       });
     if (this.deckId === 'null') {
       this.router.navigate(['/home']);
     } else {
-      this.deck = this.deckService.getDeck(this.deckId);
-      this.updateCards();
+      this.deckService.getDeck(this.deckId)
+        .subscribe(
+          (data: any) => {
+            if (data == null) {
+              this.router.navigate(['/home']);
+            }
+            this.deck = data;
+            this.updateCards();
+          }
+        );
     }
   }
 

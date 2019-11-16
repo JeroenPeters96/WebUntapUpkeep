@@ -1,17 +1,22 @@
 <div class="asdf">
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>{{card.cardname}}</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <mat-grid-list cols="2" rowHeight="20%">
-      <mat-grid-tile colspan="1" rowspan="2">
-        <img mat-card-image src={{card.imageUrl}} style="max-width: 45%">
-      </mat-grid-tile>
-      <mat-grid-tile colspan="2" rowspan="2">
-asdfasdf
-      </mat-grid-tile>
-    </mat-grid-list>
-  </mat-card-content>
-</mat-card>
+  <mat-card>
+    <mat-card-content>
+      <h2>{{card.cardname}}</h2>
+      <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center">
+        <div fxFlex="20%" style="padding-left: 5px">
+          <img mat-card-image src={{card.imageUrl}} style="max-width: 100%">
+        </div>
+        <div fxFlex="30%">
+          <h3>Mana cost</h3>
+          <p>{{card.manaCost}}</p>
+          <h3>Type:</h3>
+          <p>{{card.type}}</p>
+          <h3>Effect:</h3>
+          <p>{{card.text}}</p>
+        </div>
+        <div fxFlex="50%">
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>

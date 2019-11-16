@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {Observable, Subscription} from 'rxjs';
+import {Component, OnInit} from '@angular/core';
+import {Subscription} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CardService} from '../../services/card.service';
 import {Card} from '../../models';
@@ -26,9 +26,7 @@ export class CardsComponent implements OnInit {
       .queryParams
       .subscribe(params => {
         // Defaults to 0 if no query param provided.
-        console.log(params);
         this.cardId = params.cardName || 'null';
-        console.log(this.cardId);
       });
     if (this.cardId === 'null') {
       this.router.navigate(['/home']);
@@ -42,7 +40,7 @@ export class CardsComponent implements OnInit {
             this.card = data;
             console.log(this.card);
           }
-        )
+        );
     }
   }
 

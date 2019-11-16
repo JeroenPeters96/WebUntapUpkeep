@@ -1,27 +1,41 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Card, Deck} from '../models';
+import {Card, Deck, User} from '../models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DeckService {
+  private accountId: string;
+  private createUrl: string;
+  private payload: { accountId: string; name: string; format: string; description: string };
+  private account: User;
+
   constructor(private http: HttpClient) {
   }
+
+  baseUrl = 'http://localhost:8081';
 
   getDecksByUserId(userId: string): Deck[] {
     return null;
   }
 
-  createNewDeck(deckname: string, deckdescription: string, format: string): string {
-    
+  createNewDeck(deckName: string, deckDescription: string, mtgFormat: string) {
+    this.accountId = sessionStorage.getItem('currentAccount');
+    this.account = JSON.parse(this.accountId);
+    this.payload = {
+      accountId: this.account.id,
+      name: deckName,
+      description: deckDescription,
+      format: mtgFormat
+    };
+    this.createUrl = this.baseUrl + '/cmd/create';
 
-    return 'false';
+    return this.http.post(this.createUrl, this.payload);
   }
 
-  getDeck(deckid: string): Deck {
-
-    return new Deck();
+  getDeck(deckid: string) {
+    return this.http.get(this.baseUrl + '/qry/' + deckid);
   }
 
   delete(deckId: string) {

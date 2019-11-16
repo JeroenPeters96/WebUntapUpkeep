@@ -30,7 +30,7 @@
       <a mat-list-item [routerLink]="'/accounts'"> Your decks </a>
       <a mat-list-item [routerLink]="'/create-account'"> Collection </a>
       <a mat-list-item [routerLink]="'/contacts'"> Trade </a>
-      <a mat-list-item [routerLink]="'/logout'"> Logout </a>
+      <a mat-list-item (click)="logout()"> Logout </a>
       <!--      <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a>-->
 
     </mat-nav-list>

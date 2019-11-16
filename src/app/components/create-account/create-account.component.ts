@@ -15,6 +15,7 @@ export class CreateAccountComponent implements OnInit {
   username: string;
   email: string;
   password: string;
+  hide = false;
 
   constructor(private router: Router, authService: AuthenticationService) {
     this.authService = authService;
@@ -24,6 +25,11 @@ export class CreateAccountComponent implements OnInit {
   }
 
   register(username: string, email: string, password: string) {
+    this.hide = false;
+    if (username.length === 0 || email.length === 0 || password.length === 0) {
+      this.hide = true;
+      return;
+    }
     this.showSpinner = 'spin!';
     this.authService.register(username, email, password);
     this.showSpinner = null;

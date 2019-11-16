@@ -27,12 +27,14 @@ import {LoginLayoutComponent} from './components/login-layout/login-layout.compo
 import {DeckBuilderComponent} from './components/deck-builder/deck-builder.component';
 import {CreateAccountComponent} from './components/create-account/create-account.component';
 import {RememberPasswordComponent} from './components/remember-password/remember-password.component';
+
 import {
   _MatMenuDirectivesModule,
   MatAutocompleteModule,
   MatCardModule,
   MatDialogModule,
-  MatFormFieldModule, MatGridListModule,
+  MatFormFieldModule,
+  MatGridListModule,
   MatInputModule,
   MatMenuModule,
   MatProgressSpinnerModule,
@@ -44,6 +46,7 @@ import {MetdecksComponent} from './components/metdecks/metdecks.component';
 import {SearchdecksComponent} from './components/searchdecks/searchdecks.component';
 import {CardsComponent} from './components/cards/cards.component';
 import {SearchcardComponent} from './components/searchcard/searchcard.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -64,6 +67,7 @@ import {SearchcardComponent} from './components/searchcard/searchcard.component'
     SearchcardComponent
   ],
   imports: [
+    FlexLayoutModule,
     HttpClientModule,
     BrowserModule,
     NgbAlertModule,

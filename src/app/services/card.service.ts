@@ -9,18 +9,20 @@ export class CardService {
   constructor(private http: HttpClient) {
   }
 
+  baseUrl = 'http://localhost:8082';
+
   getCards(cards: string[]): Card[] {
     return [];
   }
 
   getAutocomplete(cardName: any) {
     if (cardName.toString().length !== 0) {
-      return this.http.get('http://localhost:8082/cardqry/getAutocomplete/' + cardName);
+      return this.http.get(this.baseUrl + '/cardqry/getAutocomplete/' + cardName);
     }
     return null;
   }
 
   getCardByName(cardName: string) {
-    return  this.http.get('http://localhost:8082/cardqry/name/' + cardName);
+    return this.http.get(this.baseUrl + '/cardqry/name/' + cardName);
   }
 }
