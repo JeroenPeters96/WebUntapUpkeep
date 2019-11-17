@@ -1,8 +1,9 @@
 export class Deck {
   id: string;
-  username: string;
-  name: string;
+  accountId: string;
+  deckname: string;
+  description: string;
   cards: string[];
-  deckArt: string;
   format: string;
+  deckArt: string;
 }

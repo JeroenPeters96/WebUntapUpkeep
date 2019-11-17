@@ -38,6 +38,10 @@ export class DeckService {
     return this.http.get(this.baseUrl + '/qry/' + deckid);
   }
 
+  getDecksByLikeName(deckName: any) {
+    return this.http.get(this.baseUrl + '/qry/name/' + deckName);
+  }
+
   delete(deckId: string) {
 
   }

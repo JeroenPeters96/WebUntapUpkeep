@@ -45,6 +45,7 @@ export class DeckComponent implements OnInit, OnDestroy {
               this.router.navigate(['/home']);
             }
             this.deck = data;
+            console.log(this.deck);
             this.updateCards();
           }
         );
