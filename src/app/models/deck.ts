@@ -3,7 +3,7 @@ export class Deck {
   accountId: string;
   deckname: string;
   description: string;
-  cards: string[];
+  cards: Map<string, number>;
   format: string;
   deckArt: string;
 }

@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {DeckService} from '../../services/deck.service';
 import {debounceTime, switchMap, tap} from 'rxjs/operators';
 import {Card, Deck} from '../../models';
+import {CardService} from '../../services/card.service';
 
 @Component({
   selector: 'app-searchdecks',
@@ -18,10 +19,11 @@ export class SearchdecksComponent implements OnInit {
   filteredDecks: any;
   hide = false;
   deck: Deck;
-  card: Card = null;
+  private cardService: CardService;
 
-  constructor(private router: Router, deckService: DeckService) {
+  constructor(private router: Router, deckService: DeckService, cardService: CardService) {
     this.deckService = deckService;
+    this.cardService = cardService;
   }
 
   ngOnInit() {
@@ -45,39 +47,36 @@ export class SearchdecksComponent implements OnInit {
   }
 
   getPicture(deck: any | Deck) {
-    console.log('wait wat ' + JSON.stringify(deck));
-    console.log('art');
     const deckTemp: Deck = deck;
-    console.log('hm' + deckTemp.cards);
-    console.log('wait wat2 ' + JSON.stringify(deckTemp));
-    this.card = null;
+    let card: any = null;
+    let cardMap = new Map();
     if (deckTemp.deckArt != null && deckTemp.deckArt !== '') {
-      console.log('deckart');
-      console.log(deckTemp.deckArt);
       return deckTemp.deckArt;
     }
-    if (deckTemp.cards !== null && deckTemp.cards.length !== 0 && deckTemp.cards.length > 0) {
-      console.log('yow');
-      console.log(deckTemp);
-      console.log(deckTemp.cards);
-      console.log(deckTemp.cards.length);
-      for (let i = 0; i < deckTemp.cards.length; i++) {
-        if (this.card == null) {
-          this.card = JSON.parse(deckTemp.cards[i]);
-        } else {
-          const listCard: Card = JSON.parse(deckTemp.cards[i]);
-          if (this.card.cmc < listCard.cmc) {
-            this.card = listCard;
+    if (deckTemp.cards !== null) {
+      console.log('base' + deckTemp);
+
+      cardMap = deckTemp.cards;
+      console.log(cardMap);
+      this.cardService.getSignature(cardMap)
+        .pipe(
+          debounceTime(500)
+        )
+        .subscribe(data => {
+            console.log('return');
+            console.log(data);
+            card = data;
+            console.log(card);
+            const tempCard: Card = card;
+            // return tempCard.artUrl;
           }
-        }
-      }
-      console.log('card');
-      console.log(this.card);
-      return this.card;
+        );
+      return 'https://img.scryfall.com/cards/art_crop/front/f/a/fa56d53c-836c-483d-988d-a288d0ad91bb.jpg?1537149837';
     } else {
       return 'https://img.scryfall.com/cards/art_crop/front/f/a/fa56d53c-836c-483d-988d-a288d0ad91bb.jpg?1537149837';
     }
   }
+
 
   selectDeck(deck: any | Deck) {
     this.router.navigate(['/deck'], {queryParams: {deckId: deck.id}});

@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
-import {Card, Deck} from '../../models';
+import {Deck} from '../../models';
 import {DeckService} from '../../services/deck.service';
 import {CardService} from '../../services/card.service';
 
@@ -17,7 +17,7 @@ export class DeckComponent implements OnInit, OnDestroy {
   private sub: Subscription;
   private deckService: DeckService;
   private cardService: CardService;
-  cards: Card[];
+  cards: any;
   deck: Deck;
 
   constructor(private route: ActivatedRoute,
@@ -53,8 +53,14 @@ export class DeckComponent implements OnInit, OnDestroy {
   }
 
   updateCards() {
-    this.cards = this.cardService.getCards(this.deck.cards);
+    this.cardService.getCards(this.deck.cards)
+      .subscribe(data => {
+          this.cards = data;
+          console.log(this.cards);
+        }
+      );
   }
+
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();

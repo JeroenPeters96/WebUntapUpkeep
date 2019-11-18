@@ -2,3 +2,4 @@ export * from './user';
 export * from './deck';
 export * from './card';
 export * from './cards';
+export * from './tempCard';
