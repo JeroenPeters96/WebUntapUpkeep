@@ -1,4 +1,4 @@
-export class TempCard {
+export class CardModel {
   cardId: string;
   count: number;
 }

@@ -7,7 +7,10 @@ import {Injectable} from '@angular/core';
 export class UserService {
   constructor(private http: HttpClient) { }
 
-  findUsername(accountId: string) : string {
-    return ""
+  baseUrl = 'http://localhost:8080';
+
+  findUsername(accountId: string) {
+    const url = this.baseUrl + '/qry/getUsername/'+accountId;
+    return this.http.get(url);
   }
 }

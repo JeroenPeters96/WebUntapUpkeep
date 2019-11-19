@@ -16,9 +16,6 @@ export class DeckService {
 
   baseUrl = 'http://localhost:8081';
 
-  getDecksByUserId(userId: string): Deck[] {
-    return null;
-  }
 
   createNewDeck(deckName: string, deckDescription: string, mtgFormat: string) {
     this.accountId = sessionStorage.getItem('currentAccount');
@@ -42,6 +39,10 @@ export class DeckService {
     return this.http.get(this.baseUrl + '/qry/name/' + deckName);
   }
 
+  getDecksByUser(userId: string) {
+    return this.http.get(this.baseUrl + '/qry/user/' + userId);
+  }
+
   delete(deckId: string) {
 
   }
@@ -60,5 +61,12 @@ export class DeckService {
 
   rename(deckId: string, newName: string) {
 
+    let payload = {
+      deckId: deckId,
+      newDeckName: newName
+    };
+    let url = this.baseUrl + '/cmd/renameDeck'
+
+    return this.http.post(url,payload);
   }
 }

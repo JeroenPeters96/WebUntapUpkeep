@@ -1,0 +1,89 @@
+<!--<img src="{{deck.deckArt}}" alt="">-->
+
+<div class="asdf">
+  <mat-card>
+
+      <h2>{{deck.deckname}}</h2>
+      <h4>User: {{username}}</h4>
+      <div class="container" fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="1%" fxLayoutAlign="left">
+        <div fxFlex="15%" style="padding-left: 5px;" >
+          <mat-list dense>
+            <h3 matSubheader>Deck</h3>
+            <mat-list-item (click)="changeView()">Change view style</mat-list-item>
+            <mat-list-item>Deck Price:</mat-list-item>
+            <mat-list-item (click)="copyDeck()">Copy deck</mat-list-item>
+            <mat-divider [inset]="true"></mat-divider>
+            <h3 matSubheader>Cards</h3>
+            <mat-list-item>Add new card:</mat-list-item>
+            <mat-form-field>
+           <label>
+             <input matInput placeholder="cardname" [formControl]="searchCardCtrl" [matAutocomplete]="auto">
+           </label>
+            </mat-form-field>
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-card *ngIf="hide">
+                <mat-option *ngFor="let card of filteredCards" [value]="card">
+                  <div (click)="addCard(card)"><span>{{card}}</span></div>
+                </mat-option>
+              </mat-card>
+            </mat-autocomplete>
+            <mat-divider [inset]="true"></mat-divider>
+            <h3 matSubheader>Edit</h3>
+            <mat-list-item (click)="deckArt()"> Set deck art </mat-list-item>
+            <mat-list-item (click)="changeName()"> Change name </mat-list-item>
+            <mat-list-item (click)="changeFormat()"> Change format </mat-list-item>
+            <mat-divider [inset]="true"></mat-divider>
+            <h3 matSubheader (click)="deleteDeck()"> Delete Deck</h3>
+          </mat-list>
+        </div>
+        <div fxFlex="75%" *ngIf="!hideStyle">
+          <div fxFlex="33%">
+            <h4>Lands</h4>
+            <p *ngFor="let card of getLand()">- {{getCount(card)}}x  <img src="{{card.imageUrl}}" style="width: 35%"> </p>
+            <h4>Creatures</h4>
+            <p *ngFor="let card of getCrea()">- {{getCount(card)}}x  <img src="{{card.imageUrl}}" style="width: 35%">> </p>
+          </div>
+          <div fxFlex="33%">
+            <h4>Instants</h4>
+            <p *ngFor="let card of getInstant()">- {{getCount(card)}}x  <img src="{{card.imageUrl}}" style="width: 35%"> </p>
+            <h4>Sorceries</h4>
+            <p *ngFor="let card of getSorc()">- {{getCount(card)}}x  <img src="{{card.imageUrl}}" style="width: 35%"> </p>
+          </div>
+          <div fxFlex="33%">
+            <h4>Artifacts</h4>
+            <p *ngFor="let card of getArt()">- {{getCount(card)}}x <img src="{{card.imageUrl}}" style="width: 35%">> </p>
+            <h4>Enchantments</h4>
+            <p *ngFor="let card of getEnch()">- {{getCount(card)}}x  <img src="{{card.imageUrl}}" style="width: 35%">> </p>
+            <h4>Planeswalkers</h4>
+            <p *ngFor="let card of getPlane()">- {{getCount(card)}}x  <img src="{{card.imageUrl}}" style="width: 35%">> </p>
+          </div>
+        </div>
+
+        <div fxFlex="80%"  *ngIf="hideStyle">
+          <div fxFlex="33%">
+            <h4>Lands</h4>
+            <p *ngFor="let card of getLand()">- {{getCount(card)}}x  {{card.cardname}} </p>
+            <h4>Creatures</h4>
+            <p *ngFor="let card of getCrea()">- {{getCount(card)}}x  {{card.cardname}} </p>
+          </div>
+          <div fxFlex="33%">
+            <h4>Instants</h4>
+            <p *ngFor="let card of getInstant()">- {{getCount(card)}}x  {{card.cardname}} </p>
+            <h4>Sorceries</h4>
+            <p *ngFor="let card of getSorc()">- {{getCount(card)}}x  {{card.cardname}} </p>
+          </div>
+          <div fxFlex="33%">
+            <h4>Artifacts</h4>
+            <p *ngFor="let card of getArt()">- {{getCount(card)}}x  {{card.cardname}} </p>
+            <h4>Enchantments</h4>
+            <p *ngFor="let card of getEnch()">- {{getCount(card)}}x  {{card.cardname}} </p>
+            <h4>Planeswalkers</h4>
+            <p *ngFor="let card of getPlane()">- {{getCount(card)}}x  {{card.cardname}} </p>
+          </div>
+        </div>
+        <mat-card-content>
+        </mat-card-content>
+      </div>
+  </mat-card>
+</div>
+

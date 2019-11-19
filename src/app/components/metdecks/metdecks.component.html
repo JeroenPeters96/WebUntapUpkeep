@@ -1,1 +1,28 @@
-<p>metdecks works!</p>
+<mat-card class="mat-card-content">
+  <mat-card-header>
+    <mat-card-title>
+      Search Decks
+    </mat-card-title>
+  </mat-card-header>
+<mat-card>
+  <div class="container" fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="1%" fxLayoutAlign="center">
+    <mat-card class="deck-picture" *ngFor="let deck of filteredDecks">
+      <div (click)="selectDeck(deck)">
+        <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+
+          <div fxFlex="80%"><h2>{{deck.deckname}}</h2></div>
+          <p fxFlex="10%">
+            Format: {{deck.format}}
+          </p>
+          <p fxFlex="10%">
+          </p>
+          <p fxFlex="10%">
+          </p>
+        </mat-card-title>
+        <img mat-card-image [src]="savedPicture(deck)">
+        Description: {{deck.description}}
+      </div>
+    </mat-card>
+  </div>
+</mat-card>
+</mat-card>

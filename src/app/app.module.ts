@@ -32,7 +32,7 @@ import {
   _MatMenuDirectivesModule,
   MatAutocompleteModule,
   MatCardModule,
-  MatDialogModule,
+  MatDialogModule, MatExpansionModule,
   MatFormFieldModule,
   MatGridListModule,
   MatInputModule,
@@ -89,7 +89,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MatAutocompleteModule,
     ReactiveFormsModule,
     MatSelectModule,
-    MatGridListModule
+    MatGridListModule,
+    MatExpansionModule
   ],
   providers: [
     AuthGuard,

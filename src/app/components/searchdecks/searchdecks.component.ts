@@ -3,7 +3,7 @@ import {FormControl} from '@angular/forms';
 import {Router} from '@angular/router';
 import {DeckService} from '../../services/deck.service';
 import {debounceTime, switchMap, tap} from 'rxjs/operators';
-import {Card, Deck} from '../../models';
+import {Card, CardModel, Deck} from '../../models';
 import {CardService} from '../../services/card.service';
 
 @Component({
@@ -17,13 +17,17 @@ export class SearchdecksComponent implements OnInit {
   searchDeckCtrl = new FormControl();
   isLoading = false;
   filteredDecks: any;
+  picture: Map<Deck,string>;
+
   hide = false;
   deck: Deck;
+
   private cardService: CardService;
 
   constructor(private router: Router, deckService: DeckService, cardService: CardService) {
     this.deckService = deckService;
     this.cardService = cardService;
+    this.picture = new Map<Deck, string>();
   }
 
   ngOnInit() {
@@ -46,36 +50,43 @@ export class SearchdecksComponent implements OnInit {
       });
   }
 
+  savedPicture(deck: Deck) {
+    if(this.picture.has(deck))
+      return this.picture.get(deck);
+    this.picture.set(deck,this.getPicture(deck));
+  }
+
+  overwrite(deck:Deck,url:string) {
+    this.picture.set(deck,url);
+  }
+
   getPicture(deck: any | Deck) {
     const deckTemp: Deck = deck;
     let card: any = null;
-    let cardMap = new Map();
+    let cardList: CardModel[];
     if (deckTemp.deckArt != null && deckTemp.deckArt !== '') {
       return deckTemp.deckArt;
     }
-    if (deckTemp.cards !== null) {
-      console.log('base' + deckTemp);
-
-      cardMap = deckTemp.cards;
-      console.log(cardMap);
-      this.cardService.getSignature(cardMap)
+    if (deckTemp.cards !== null && deckTemp.cards.length > 0) {
+      cardList = deckTemp.cards;
+      console.log(cardList);
+      this.cardService.getSignature(cardList)
         .pipe(
           debounceTime(500)
         )
         .subscribe(data => {
-            console.log('return');
-            console.log(data);
             card = data;
             console.log(card);
             const tempCard: Card = card;
-            // return tempCard.artUrl;
+            this.overwrite(deck,tempCard.artUrl);
+            return tempCard.artUrl;
           }
         );
-      return 'https://img.scryfall.com/cards/art_crop/front/f/a/fa56d53c-836c-483d-988d-a288d0ad91bb.jpg?1537149837';
     } else {
       return 'https://img.scryfall.com/cards/art_crop/front/f/a/fa56d53c-836c-483d-988d-a288d0ad91bb.jpg?1537149837';
     }
   }
+
 
 
   selectDeck(deck: any | Deck) {

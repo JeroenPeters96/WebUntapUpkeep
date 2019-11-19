@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {CardModel} from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -24,44 +25,43 @@ export class CardService {
     return this.http.get(this.baseUrl + '/cardqry/name/' + cardName);
   }
 
-  getCards(cards: Map<string, number>) {
-    if (cards.size === 0) {
+  getCards(cards: CardModel[]) {
+    console.log("cards");
+    console.log(cards);
+    if (cards.length === 0) {
       return;
     }
     let newUrl = this.baseUrl + '/cardqry/?cardIds=';
-
-    for (const key of Array.from(cards.keys())) {
-      newUrl = newUrl + key + ',';
+    let count = 0;
+    for (let key in cards) {
+      newUrl = newUrl + cards[count].cardId + ',';
+      count++;
     }
-
+    console.log(newUrl);
     const url = newUrl.substr(0, newUrl.length - 1);
 
     return this.http.get(url);
   }
 
-  getSignature(cards: Map<string, number>) {
-    if (cards.size === 0) {
+  getSignature(cards: CardModel[]) {
+    if (cards.length === 0) {
       return;
     }
     let newUrl = this.baseUrl + '/cardqry/getSignature/?cardIds=';
     console.log(cards);
 
-    
-    const keys: string[] = Object.keys(cards);
-    console.log('keys');
-    console.log(keys);
-
-    for (const key in cards.entries()) {
-      console.log(key);
+    for(let i = 0; i< cards.length; i++) {
+      newUrl = newUrl + cards[i].cardId + ',';
     }
-// newUrl = newUrl + key + ',';
-    // Object.keys(cards).forEach(function(key) {
-    //   newUrl = newUrl + key + ',';
-    // });
-
 
     const url = newUrl.substr(0, newUrl.length - 1);
     console.log(url);
     return this.http.get(url);
+  }
+
+  getCardsLikeName(cardName: any) {
+    if (cardName.toString().length !== 0) {
+      return this.http.get(this.baseUrl + '/cardqry/getLikeName/' + cardName);
+    }
   }
 }
